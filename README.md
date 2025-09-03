@@ -5,7 +5,7 @@ This project is a technical test for DevelopsToday. It is a fullstack applicatio
 ## Features
 
 - Complete integration between frontend and backend via API
-- Backend data validation
+- Backend data validation and simple tests
 - Full Docker support for fast development
 - API documented with Swagger
 

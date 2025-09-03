@@ -1,13 +1,23 @@
+import { Quiz } from "@/types/quiz";
 import axios from "axios";
-import type { Quiz } from "@/types/quiz";
+
+type CreateQuizPayload = {
+  title: string;
+  description?: string;
+  questions: Array<{
+    text: string;
+    type: "BOOLEAN" | "INPUT" | "CHECKBOX";
+    options?: string[];
+  }>;
+};
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 export const quizApi = {
-  async create(payload: Omit<Quiz, "id">) {
-    const { data } = await api.post<Quiz>("/quizzes", payload);
+  async create(payload: CreateQuizPayload) {
+    const { data } = await api.post("/quizzes", payload);
     return data;
   },
   async list() {

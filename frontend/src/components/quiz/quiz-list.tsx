@@ -1,28 +1,45 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { quizStore } from "@/lib/quiz-store";
 import { useToast } from "@/hooks/use-toast";
+import { quizApi } from "@/services/api";
 import { QuizCard } from "./quiz-card";
-import type { Quiz } from "@/types/quiz";
+import { Quiz } from "@/types/quiz";
 
-export function QuizList() {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+type QuizListItem = { id: string; title: string; questionCount: number };
+
+export default function QuizList() {
+  const [quizzes, setQuizzes] = useState<QuizListItem[]>([]);
   const { toast } = useToast();
 
+  const fetchQuizzes = () => {
+    quizApi
+      .list()
+      .then((data) =>
+        setQuizzes(
+          (data as unknown as Quiz[]).map((quiz) => ({
+            id: quiz.id,
+            title: quiz.title,
+            questionCount: quiz.questions?.length || 0,
+          }))
+        )
+      )
+      .catch(() => setQuizzes([]));
+  };
+
   useEffect(() => {
-    setQuizzes(quizStore.getQuizzes());
+    fetchQuizzes();
   }, []);
 
-  const handleDelete = (id: string) => {
-    const success = quizStore.deleteQuiz(id);
-    if (success) {
-      setQuizzes(quizStore.getQuizzes());
+  const handleDelete = async (id: string) => {
+    try {
+      await quizApi.remove(id);
+      fetchQuizzes();
       toast({
         title: "Success",
         description: "Quiz deleted successfully",
       });
-    } else {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to delete quiz",

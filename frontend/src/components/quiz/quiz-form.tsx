@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 import { createQuizSchema, type CreateQuizFormData } from "@/lib/validations";
-import { quizStore } from "@/lib/quiz-store";
+import { quizApi } from "@/services/api";
 import { useToast } from "@/hooks/use-toast";
 import { QuestionForm } from "./question-form";
 
@@ -36,8 +36,18 @@ export function QuizForm() {
 
   const onSubmit = async (data: CreateQuizFormData) => {
     setIsSubmitting(true);
+    const payload = {
+      title: data.title,
+      description: undefined,
+      questions: data.questions.map((q) => ({
+        text: q.question,
+        type: q.type.toUpperCase() as "BOOLEAN" | "INPUT" | "CHECKBOX",
+        options: q.options && q.options.length > 0 ? q.options : undefined,
+      })),
+    };
+
     try {
-      quizStore.createQuiz(data);
+      await quizApi.create(payload);
       toast({
         title: "Success",
         description: "Quiz created successfully!",

@@ -7,6 +7,7 @@ interface QuizDetailProps {
 }
 
 export function QuizDetail({ quiz }: QuizDetailProps) {
+  console.log(quiz);
   return (
     <div className="space-y-6">
       <div>
@@ -23,18 +24,18 @@ export function QuizDetail({ quiz }: QuizDetailProps) {
           <Card key={question.id}>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">Question {index + 1}</CardTitle>
+                <div>
+                  <CardTitle className="text-lg">{question.text}</CardTitle>
+                  <p className="text-xs text-muted-foreground">
+                    Question {index + 1}
+                  </p>
+                </div>
                 <Badge variant="secondary">
-                  {{
-                    boolean: "True/False questions",
-                    input: "Short text answers",
-                    checkbox: "Multiple choice",
-                  }[question.type] || "Unknown question type"}
+                  {mapQuestionType(question.type)}
                 </Badge>
               </div>
             </CardHeader>
             <CardContent>
-              <p className="mb-4">{question.question}</p>
               {question.type === "checkbox" && question.options && (
                 <div className="space-y-2">
                   <p className="text-sm font-medium text-muted-foreground">
@@ -55,4 +56,20 @@ export function QuizDetail({ quiz }: QuizDetailProps) {
       </div>
     </div>
   );
+}
+
+function mapQuestionType(type: string) {
+  switch (type) {
+    case "BOOLEAN":
+    case "boolean":
+      return "True/False questions";
+    case "INPUT":
+    case "input":
+      return "Short text answers";
+    case "CHECKBOX":
+    case "checkbox":
+      return "Multiple choice";
+    default:
+      return "Unknown question type";
+  }
 }

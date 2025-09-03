@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Param, Delete, HttpCode, HttpStatus, Logger } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  Logger,
+  Body,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { QuizzesService } from './quizzes.service';
 import { CreateQuizDto } from './dto/create-quiz.dto';
@@ -20,7 +30,7 @@ export class QuizzesController {
     type: QuizResponseDto,
   })
   @ApiResponse({ status: 400, description: 'Bad request' })
-  async create(createQuizDto: CreateQuizDto): Promise<QuizResponseDto> {
+  async create(@Body() createQuizDto: CreateQuizDto): Promise<QuizResponseDto> {
     this.logger.log('POST /quizzes - Creating new quiz');
     return this.quizzesService.create(createQuizDto);
   }

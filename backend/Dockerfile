@@ -8,4 +8,4 @@ ENV PRISMA_CLI_QUERY_ENGINE_TYPE=binary
 RUN npx prisma generate
 RUN npm run build
 EXPOSE 3001
-CMD ["node", "dist/src/main.js"]
+CMD npx prisma migrate deploy && node dist/src/main.js

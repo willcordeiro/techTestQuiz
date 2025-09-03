@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
-import { QuizList } from "@/components/quiz/quiz-list";
+import QuizList from "@/components/quiz/quiz-list";
 
 export default function QuizzesPage() {
   return (

@@ -6,6 +6,7 @@ export interface Quiz {
 }
 
 export interface Question {
+  text: string;
   id: string;
   type: "boolean" | "input" | "checkbox";
   question: string;

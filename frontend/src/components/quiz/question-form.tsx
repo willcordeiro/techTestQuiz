@@ -48,7 +48,10 @@ export function QuestionForm({
           <Select
             value={questionType}
             onValueChange={(value) =>
-              form.setValue(`questions.${index}.type`, value)
+              form.setValue(
+                `questions.${index}.type`,
+                value as "boolean" | "input" | "checkbox"
+              )
             }
           >
             <SelectTrigger>

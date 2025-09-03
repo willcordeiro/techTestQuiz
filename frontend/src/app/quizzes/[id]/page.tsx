@@ -29,7 +29,8 @@ export default function QuizDetailPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl font-bold mb-4">Quiz Not Found</h1>
             <p className="text-muted-foreground mb-8">
-              The quiz you're looking for doesn't exist or has been deleted.
+              The quiz you&apos;re looking for doesn&apos;t exist or has been
+              deleted.
             </p>
             <Button onClick={() => router.push("/quizzes")}>
               <ArrowLeft className="w-4 h-4 mr-2" />

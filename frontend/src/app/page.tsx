@@ -25,7 +25,8 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle>Create Quiz</CardTitle>
                 <CardDescription>
-                  Build a new quiz with boolean, input, and checkbox questions
+                  Build a new quiz with True/False, Short text answers, and
+                  Multiple choice questions
                 </CardDescription>
               </CardHeader>
               <CardContent>

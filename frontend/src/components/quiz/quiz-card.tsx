@@ -40,7 +40,11 @@ export function QuizCard({ quiz, onDelete }: QuizCardProps) {
           <div className="flex gap-2">
             {quiz.questions.slice(0, 3).map((question) => (
               <Badge key={question.id} variant="outline" className="text-xs">
-                {question.type}
+                {{
+                  boolean: "True/False questions",
+                  input: "Short text answers",
+                  checkbox: "Multiple choice",
+                }[question.type] || "Unknown question type"}
               </Badge>
             ))}
             {quiz.questions.length > 3 && (

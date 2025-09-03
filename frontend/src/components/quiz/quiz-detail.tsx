@@ -24,7 +24,13 @@ export function QuizDetail({ quiz }: QuizDetailProps) {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">Question {index + 1}</CardTitle>
-                <Badge variant="secondary">{question.type}</Badge>
+                <Badge variant="secondary">
+                  {{
+                    boolean: "True/False questions",
+                    input: "Short text answers",
+                    checkbox: "Multiple choice",
+                  }[question.type] || "Unknown question type"}
+                </Badge>
               </div>
             </CardHeader>
             <CardContent>

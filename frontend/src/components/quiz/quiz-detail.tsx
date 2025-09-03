@@ -7,7 +7,6 @@ interface QuizDetailProps {
 }
 
 export function QuizDetail({ quiz }: QuizDetailProps) {
-  console.log(quiz);
   return (
     <div className="space-y-6">
       <div>
@@ -36,7 +35,7 @@ export function QuizDetail({ quiz }: QuizDetailProps) {
               </div>
             </CardHeader>
             <CardContent>
-              {question.type === "checkbox" && question.options && (
+              {question.type === "CHECKBOX" && question.options && (
                 <div className="space-y-2">
                   <p className="text-sm font-medium text-muted-foreground">
                     Options:

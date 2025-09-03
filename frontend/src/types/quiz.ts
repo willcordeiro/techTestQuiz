@@ -8,7 +8,7 @@ export interface Quiz {
 export interface Question {
   text: string;
   id: string;
-  type: "boolean" | "input" | "checkbox";
+  type: "BOOLEAN" | "INPUT" | "CHECKBOX";
   question: string;
   options?: string[];
   correctAnswers?: string[];

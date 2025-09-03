@@ -25,10 +25,10 @@ export function QuizDetail({ quiz }: QuizDetailProps) {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">{question.text}</CardTitle>
                   <p className="text-xs text-muted-foreground">
                     Question {index + 1}
                   </p>
+                  <CardTitle className="text-lg">{question.text}</CardTitle>
                 </div>
                 <Badge variant="secondary">
                   {mapQuestionType(question.type)}
